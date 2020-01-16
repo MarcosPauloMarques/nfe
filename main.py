@@ -2,6 +2,7 @@ from nfelib.v4_00 import leiauteNFe_sub as parser
 import pdfkit
 import pdfcrowd
 import sys 
+import wkhtmltopdf
 
 arquivo_xml = """
 <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
@@ -1022,7 +1023,8 @@ input_string_html=F"""
 """
 
 str_pronta = input_string_css + input_string_html
-
 # print(str_pronta)
-# pdfkit.from_string(str_pronta,"out.pdf")
 
+str_pronta.wkhtmltopdf()
+
+pdfkit.from_string(str_pronta,"out.pdf")
