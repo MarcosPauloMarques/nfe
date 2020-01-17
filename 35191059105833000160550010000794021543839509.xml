@@ -1,0 +1,390 @@
+<nfeProc versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+	<NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+		<infNFe versao="4.00" Id="NFe35191059105833000160550010000794021543839509">
+			<ide>
+				<cUF>35</cUF>
+				<cNF>54383950</cNF>
+				<natOp>Retorno de Mercadoria</natOp>
+				<mod>55</mod>
+				<serie>1</serie>
+				<nNF>79402</nNF>
+				<dhEmi>2019-10-22T09:00:07-03:00</dhEmi>
+				<dhSaiEnt>2019-10-22T09:00:07-03:00</dhSaiEnt>
+				<tpNF>1</tpNF>
+				<idDest>2</idDest>
+				<cMunFG>3548708</cMunFG>
+				<tpImp>1</tpImp>
+				<tpEmis>1</tpEmis>
+				<cDV>9</cDV>
+				<tpAmb>1</tpAmb>
+				<finNFe>1</finNFe>
+				<indFinal>1</indFinal>
+				<indPres>0</indPres>
+				<procEmi>0</procEmi>
+				<verProc>Bling 1.0</verProc>
+			</ide>
+			<emit>
+				<CNPJ>59105833000160</CNPJ>
+				<xNome>SPX FLOW TECHNOLOGY DO BRASIL</xNome>
+				<xFant>spx</xFant>
+				<enderEmit>
+					<xLgr>Joao Daprat</xLgr>
+					<nro>231</nro>
+					<xCpl>a</xCpl>
+					<xBairro>JD DALVA</xBairro>
+					<cMun>3548708</cMun>
+					<xMun>Sao Bernardo do Campo</xMun>
+					<UF>SP</UF>
+					<CEP>09600010</CEP>
+					<cPais>1058</cPais>
+					<xPais>Brasil</xPais>
+					<fone>1121278277</fone>
+				</enderEmit>
+				<IE>635011360110</IE>
+				<CRT>3</CRT>
+			</emit>
+			<dest>
+				<CNPJ>33000167100750</CNPJ>
+				<xNome>PETROLEO BRASILEIRO S.A. (0000037790)</xNome>
+				<enderDest>
+					<xLgr>AV.ELIAS AGOSTINHO</xLgr>
+					<nro>665</nro>
+					<xCpl>665</xCpl>
+					<xBairro>IMBETIBA</xBairro>
+					<cMun>3302403</cMun>
+					<xMun>Macae</xMun>
+					<UF>RJ</UF>
+					<CEP>27913350</CEP>
+					<cPais>1058</cPais>
+					<xPais>Brasil</xPais>
+				</enderDest>
+				<indIEDest>9</indIEDest>
+				<email>nfe@petronect.com.br</email>
+			</dest>
+			<det nItem="1">
+				<prod>
+					<cProd>BR_FERRAMENTA</cProd>
+					<cEAN>SEM GTIN</cEAN>
+					<xProd>ANEL DE VEDACAO B. BRANLUEBBE</xProd>
+					<NCM>39269090</NCM>
+					<CFOP>6916</CFOP>
+					<uCom>UN</uCom>
+					<qCom>2.0000</qCom>
+					<vUnCom>36.0900000000</vUnCom>
+					<vProd>72.18</vProd>
+					<cEANTrib>SEM GTIN</cEANTrib>
+					<uTrib>UN</uTrib>
+					<qTrib>2.0000</qTrib>
+					<vUnTrib>36.0900000000</vUnTrib>
+					<indTot>1</indTot>
+				</prod>
+				<imposto>
+					<vTotTrib>25.44</vTotTrib>
+					<ICMS>
+						<ICMS00>
+							<orig>0</orig>
+							<CST>00</CST>
+							<modBC>3</modBC>
+							<vBC>72.18</vBC>
+							<pICMS>0.0000</pICMS>
+							<vICMS>0.00</vICMS>
+						</ICMS00>
+					</ICMS>
+					<IPI>
+						<cEnq>999</cEnq>
+						<IPITrib>
+							<CST>99</CST>
+							<vBC>0.00</vBC>
+							<pIPI>0.00</pIPI>
+							<vIPI>0.00</vIPI>
+						</IPITrib>
+					</IPI>
+					<PIS>
+						<PISNT>
+							<CST>07</CST>
+						</PISNT>
+					</PIS>
+					<COFINS>
+						<COFINSNT>
+							<CST>07</CST>
+						</COFINSNT>
+					</COFINS>
+					<ICMSUFDest>
+						<vBCUFDest>0.00</vBCUFDest>
+						<vBCFCPUFDest>0.00</vBCFCPUFDest>
+						<pFCPUFDest>0.0000</pFCPUFDest>
+						<pICMSUFDest>20.0000</pICMSUFDest>
+						<pICMSInter>12.00</pICMSInter>
+						<pICMSInterPart>100.0000</pICMSInterPart>
+						<vFCPUFDest>0.00</vFCPUFDest>
+						<vICMSUFDest>0.00</vICMSUFDest>
+						<vICMSUFRemet>0.00</vICMSUFRemet>
+					</ICMSUFDest>
+				</imposto>
+			</det>
+			<det nItem="2">
+				<prod>
+					<cProd>BR_FERRAMENTA</cProd>
+					<cEAN>SEM GTIN</cEAN>
+					<xProd>PARAFUSO B. BRANLUEBBE</xProd>
+					<NCM>73181600</NCM>
+					<CFOP>6916</CFOP>
+					<uCom>UN</uCom>
+					<qCom>1.0000</qCom>
+					<vUnCom>0.2900000000</vUnCom>
+					<vProd>0.29</vProd>
+					<cEANTrib>SEM GTIN</cEANTrib>
+					<uTrib>UN</uTrib>
+					<qTrib>1.0000</qTrib>
+					<vUnTrib>0.2900000000</vUnTrib>
+					<indTot>1</indTot>
+				</prod>
+				<imposto>
+					<vTotTrib>0.08</vTotTrib>
+					<ICMS>
+						<ICMS00>
+							<orig>0</orig>
+							<CST>00</CST>
+							<modBC>3</modBC>
+							<vBC>0.29</vBC>
+							<pICMS>0.0000</pICMS>
+							<vICMS>0.00</vICMS>
+						</ICMS00>
+					</ICMS>
+					<IPI>
+						<cEnq>999</cEnq>
+						<IPITrib>
+							<CST>99</CST>
+							<vBC>0.00</vBC>
+							<pIPI>0.00</pIPI>
+							<vIPI>0.00</vIPI>
+						</IPITrib>
+					</IPI>
+					<PIS>
+						<PISNT>
+							<CST>07</CST>
+						</PISNT>
+					</PIS>
+					<COFINS>
+						<COFINSNT>
+							<CST>07</CST>
+						</COFINSNT>
+					</COFINS>
+					<ICMSUFDest>
+						<vBCUFDest>0.00</vBCUFDest>
+						<vBCFCPUFDest>0.00</vBCFCPUFDest>
+						<pFCPUFDest>0.0000</pFCPUFDest>
+						<pICMSUFDest>20.0000</pICMSUFDest>
+						<pICMSInter>12.00</pICMSInter>
+						<pICMSInterPart>100.0000</pICMSInterPart>
+						<vFCPUFDest>0.00</vFCPUFDest>
+						<vICMSUFDest>0.00</vICMSUFDest>
+						<vICMSUFRemet>0.00</vICMSUFRemet>
+					</ICMSUFDest>
+				</imposto>
+			</det>
+			<det nItem="3">
+				<prod>
+					<cProd>BR_FERRAMENTA</cProd>
+					<cEAN>SEM GTIN</cEAN>
+					<xProd>ANEL DE VEDACAO B. BRANLUEBBE</xProd>
+					<NCM>39269090</NCM>
+					<CFOP>6916</CFOP>
+					<uCom>UN</uCom>
+					<qCom>1.0000</qCom>
+					<vUnCom>15.7700000000</vUnCom>
+					<vProd>15.77</vProd>
+					<cEANTrib>SEM GTIN</cEANTrib>
+					<uTrib>UN</uTrib>
+					<qTrib>1.0000</qTrib>
+					<vUnTrib>15.7700000000</vUnTrib>
+					<indTot>1</indTot>
+				</prod>
+				<imposto>
+					<vTotTrib>5.56</vTotTrib>
+					<ICMS>
+						<ICMS00>
+							<orig>0</orig>
+							<CST>00</CST>
+							<modBC>3</modBC>
+							<vBC>15.77</vBC>
+							<pICMS>0.0000</pICMS>
+							<vICMS>0.00</vICMS>
+						</ICMS00>
+					</ICMS>
+					<IPI>
+						<cEnq>999</cEnq>
+						<IPITrib>
+							<CST>99</CST>
+							<vBC>0.00</vBC>
+							<pIPI>0.00</pIPI>
+							<vIPI>0.00</vIPI>
+						</IPITrib>
+					</IPI>
+					<PIS>
+						<PISNT>
+							<CST>07</CST>
+						</PISNT>
+					</PIS>
+					<COFINS>
+						<COFINSNT>
+							<CST>07</CST>
+						</COFINSNT>
+					</COFINS>
+					<ICMSUFDest>
+						<vBCUFDest>0.00</vBCUFDest>
+						<vBCFCPUFDest>0.00</vBCFCPUFDest>
+						<pFCPUFDest>0.0000</pFCPUFDest>
+						<pICMSUFDest>20.0000</pICMSUFDest>
+						<pICMSInter>12.00</pICMSInter>
+						<pICMSInterPart>100.0000</pICMSInterPart>
+						<vFCPUFDest>0.00</vFCPUFDest>
+						<vICMSUFDest>0.00</vICMSUFDest>
+						<vICMSUFRemet>0.00</vICMSUFRemet>
+					</ICMSUFDest>
+				</imposto>
+			</det>
+			<det nItem="4">
+				<prod>
+					<cProd>BR_FERRAMENTA</cProd>
+					<cEAN>SEM GTIN</cEAN>
+					<xProd>PARAFUSO B. BRANLUEBBE</xProd>
+					<NCM>73181600</NCM>
+					<CFOP>6916</CFOP>
+					<uCom>UN</uCom>
+					<qCom>1.0000</qCom>
+					<vUnCom>14.5300000000</vUnCom>
+					<vProd>14.53</vProd>
+					<cEANTrib>SEM GTIN</cEANTrib>
+					<uTrib>UN</uTrib>
+					<qTrib>1.0000</qTrib>
+					<vUnTrib>14.5300000000</vUnTrib>
+					<indTot>1</indTot>
+				</prod>
+				<imposto>
+					<vTotTrib>3.89</vTotTrib>
+					<ICMS>
+						<ICMS00>
+							<orig>0</orig>
+							<CST>00</CST>
+							<modBC>3</modBC>
+							<vBC>14.53</vBC>
+							<pICMS>0.0000</pICMS>
+							<vICMS>0.00</vICMS>
+						</ICMS00>
+					</ICMS>
+					<IPI>
+						<cEnq>999</cEnq>
+						<IPITrib>
+							<CST>99</CST>
+							<vBC>0.00</vBC>
+							<pIPI>0.00</pIPI>
+							<vIPI>0.00</vIPI>
+						</IPITrib>
+					</IPI>
+					<PIS>
+						<PISNT>
+							<CST>07</CST>
+						</PISNT>
+					</PIS>
+					<COFINS>
+						<COFINSNT>
+							<CST>07</CST>
+						</COFINSNT>
+					</COFINS>
+					<ICMSUFDest>
+						<vBCUFDest>0.00</vBCUFDest>
+						<vBCFCPUFDest>0.00</vBCFCPUFDest>
+						<pFCPUFDest>0.0000</pFCPUFDest>
+						<pICMSUFDest>20.0000</pICMSUFDest>
+						<pICMSInter>12.00</pICMSInter>
+						<pICMSInterPart>100.0000</pICMSInterPart>
+						<vFCPUFDest>0.00</vFCPUFDest>
+						<vICMSUFDest>0.00</vICMSUFDest>
+						<vICMSUFRemet>0.00</vICMSUFRemet>
+					</ICMSUFDest>
+				</imposto>
+			</det>
+			<total>
+				<ICMSTot>
+					<vBC>102.77</vBC>
+					<vICMS>0.00</vICMS>
+					<vICMSDeson>0.00</vICMSDeson>
+					<vFCP>0.00</vFCP>
+					<vBCST>0.00</vBCST>
+					<vST>0.00</vST>
+					<vFCPST>0.00</vFCPST>
+					<vFCPSTRet>0.00</vFCPSTRet>
+					<vProd>102.77</vProd>
+					<vFrete>0.00</vFrete>
+					<vSeg>0.00</vSeg>
+					<vDesc>0.00</vDesc>
+					<vII>0.00</vII>
+					<vIPI>0.00</vIPI>
+					<vIPIDevol>0.00</vIPIDevol>
+					<vPIS>0.00</vPIS>
+					<vCOFINS>0.00</vCOFINS>
+					<vOutro>0.00</vOutro>
+					<vNF>102.77</vNF>
+					<vTotTrib>34.97</vTotTrib>
+				</ICMSTot>
+			</total>
+			<transp>
+				<modFrete>0</modFrete>
+				<vol>
+					<qVol>1</qVol>
+					<esp>CAIXA</esp>
+					<pesoL>1.000</pesoL>
+					<pesoB>1.000</pesoB>
+				</vol>
+			</transp>
+			<pag>
+				<detPag>
+					<tPag>01</tPag>
+					<vPag>102.77</vPag>
+				</detPag>
+			</pag>
+			<infAdic>
+				<infCpl>Total aproximado de tributos: R$ 34,97 (34,03%)  Federais R$ 16,46 (16,02%)  Estaduais R$ 18,50 (18,00%) . Fonte IBPT.&lt;br /&gt;RETORNO DE CONSERTO PARCIAL REFERENTE SUA NF 206878 DE 20/11/15</infCpl>
+			</infAdic>
+			<infRespTec>
+				<CNPJ>01056417000139</CNPJ>
+				<xContato>Jonatan Fracasso da Silva</xContato>
+				<email>fiscal@bling.com.br</email>
+				<fone>05430550479</fone>
+			</infRespTec>
+		</infNFe>
+		<Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+			<SignedInfo>
+				<CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+				<SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+				<Reference URI="#NFe35191059105833000160550010000794021543839509">
+					<Transforms>
+						<Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+						<Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+					</Transforms>
+					<DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+					<DigestValue>kwhMjbgSnXI6S/3kh/7BTIhKjKE=</DigestValue>
+				</Reference>
+			</SignedInfo>
+			<SignatureValue>gKiMryf87MHQLI768WVQDb4ctKw0PdZNCMi9ygtPK9SKsqQW+TEPHFlhMofn+aYjxreHb6R6I9b1gZ2JZ6xJ3iIA5rLlo5fI4yQ0UUD5urhLF0bPzONohp2roHcDbnT88PvBNLZPkPgLVowECy959MAQu78DZAnPoFH+/f1XL92eXZdSubRWHZF8JxYtAr52Y/4y9nyPx/xNW7vVONmyrmC5g27KH1hhLs8XZ5/Kl1WlaLJ3RLcQN136Ymp/PX/SGz30D3F6fin9jLzns8CMmG6QK7/cWdwneOTs0yXU1u+BdHUlGyEtyzjchlB/S24yVTA7cggX4fGrAfvCE48VIw==</SignatureValue>
+			<KeyInfo>
+				<X509Data>
+					<X509Certificate>MIIICjCCBfKgAwIBAgIQNOcu2vCSiuwQzYxwN2qIrTANBgkqhkiG9w0BAQsFADB1MQswCQYDVQQGEwJCUjETMBEGA1UEChMKSUNQLUJyYXNpbDE2MDQGA1UECxMtU2VjcmV0YXJpYSBkYSBSZWNlaXRhIEZlZGVyYWwgZG8gQnJhc2lsIC0gUkZCMRkwFwYDVQQDExBBQyBTSU5DT1IgUkZCIEc1MB4XDTE5MDUyNzE0MjAxNloXDTIwMDUyNjE0MjAxNlowggEDMQswCQYDVQQGEwJCUjETMBEGA1UECgwKSUNQLUJyYXNpbDELMAkGA1UECAwCU1AxHjAcBgNVBAcMFVNhbyBCZXJuYXJkbyBkbyBDYW1wbzE2MDQGA1UECwwtU2VjcmV0YXJpYSBkYSBSZWNlaXRhIEZlZGVyYWwgZG8gQnJhc2lsIC0gUkZCMRYwFAYDVQQLDA1SRkIgZS1DTlBKIEExMRcwFQYDVQQLDA41OTk3NTIwMTAwMDE1NzFJMEcGA1UEAwxAU1BYIEZMT1cgVEVDSE5PTE9HWSBETyBCUkFTSUwgSU5EVVNUUklBIEUgQ09NRVJDSTo1OTEwNTgzMzAwMDE2MDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKiwMsUue5cmqjF0tZhveHshMtznfjOf6XEKPDAYXcLtiS0/wpTOBowKp3mM4S963akNHjFp42m+68E+xpXUK2zhXqZ0sNiCmk2Sh/KZP+DRd2UP/kAs4bHtc2jYVK5GZ12ZxAQFcqzvpFZkf+Yo5hjOHHltW1v1NNZ1LjqhGKzsc37xnOcwkZWrlO+Ra+d9mauceQ/F9uL6ingv6zEZzAd5QKcqkKpgo+npMci34YF1d8vwQ4jW0vnCO4GQsgSFzj3Xx4jRKNbpoDhXIiQOYCpAeGY1qT89cr5OCY+bciZyjoB4WqUQT2+Wly9lh1NGjcygZs7MPCZNu5wxa2mC0tkCAwEAAaOCAwQwggMAMIHHBgNVHREEgb8wgbygPQYFYEwBAwSgNAQyMTMwNTE5NjkxNjg2MTgzOTg0MTAwMDAwMDAwMDAwMDAwMDAwMTk3MDU5MzYzU1NQU1CgKwYFYEwBAwKgIgQgSk9TRSBMVUlaIEFMVkFSRVMgREEgU0lMVkEgR09NRVOgGQYFYEwBAwOgEAQONTkxMDU4MzMwMDAxNjCgFwYFYEwBAwegDgQMMDAwMDAwMDAwMDAwgRpqb3NlbHVpei5nb21lc0BzcHhmbG93LmNvbTAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFGfnQhG+8jgGFUkPh//aBd5djpQiMHgGA1UdIARxMG8wbQYGYEwBAgEcMGMwYQYIKwYBBQUHAgEWVWh0dHA6Ly9pY3AtYnJhc2lsLmFjc2luY29yLmNvbS5ici9yZXBvc2l0b3Jpby9kcGMvQUNfU0lOQ09SX1JGQi9EUENfQUNfU0lOQ09SX1JGQi5wZGYwgbYGA1UdHwSBrjCBqzBUoFKgUIZOaHR0cDovL2ljcC1icmFzaWwuY2VydGlzaWduLmNvbS5ici9yZXBvc2l0b3Jpby9sY3IvQUNTSU5DT1JSRkJHNS9MYXRlc3RDUkwuY3JsMFOgUaBPhk1odHRwOi8vaWNwLWJyYXNpbC5vdXRyYWxjci5jb20uYnIvcmVwb3NpdG9yaW8vbGNyL0FDU0lOQ09SUkZCRzUvTGF0ZXN0Q1JMLmNybDAOBgNVHQ8BAf8EBAMCBeAwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMIGlBggrBgEFBQcBAQSBmDCBlTBbBggrBgEFBQcwAoZPaHR0cDovL2ljcC1icmFzaWwuYWNzaW5jb3IuY29tLmJyL3JlcG9zaXRvcmlvL2NlcnRpZmljYWRvcy9BQ19TSU5DT1JfUkZCX0c1LnA3YzA2BggrBgEFBQcwAYYqaHR0cDovL29jc3AtYWMtc2luY29yLXJmYi5jZXJ0aXNpZ24uY29tLmJyMA0GCSqGSIb3DQEBCwUAA4ICAQAFYFZpa31SNqb0Xne2AfC7NaswFKebpKbAGF+WnYcs9CYLRcuVKn6IklfuGBO0HfX1ixRwWWKyezFT+MsbutdNH3b82wAE7/u8OxD/LNvX+CoRnf2Wwtcs5z769HCZonk1rTbw/1vrwpkK3guteE9F2I11+mqq8daH9k7glmukx9ZiaVgG/siMUWDDJd7KOqSg4t7V6ZZcpwpNAxF6vd/Ddz+YDIxNYL3oServr/E+8d2hTnglWQJ7FVPNM9GyZwVNd3Cuke8cf8aI6Xl1wUApQUYqZxsVEmVSGbeJ4gdDKgWSc45ENj2yrKq7nXt6tcFJ8k3yp/zqcH06Pxy9E0zs0dqmaGLDtJwei8OtXBAamvIzXz6CyeAwTso6zPSfRfcnPnYCVk5GBCKhzTM9aeKvp/fiDidXEw/gVuVb/vzjXj6HYO1CCYcofUwKHXey03bActa9NLQ0KAgcJP1mLVaZMLTU6TWwtKoMnRKMUaBAQD3rIuKniQOa2ClLARatdwp+E9dbFnKc9PhIoYjlGy0miO199dr7trMbauCmcvHRBIdy2I+LegJVW/6ELVp4DTB2COInIF7s9kTkDhnAoMxhUGTnJbzlmmnynJXNBWLD7yftF+eDufsS2FwVrpBpvJNpuyLh/lTRPouFPEDkiHm6DhzPKYAyEfEb8/4AkmF5Dw==</X509Certificate>
+				</X509Data>
+			</KeyInfo>
+		</Signature>
+	</NFe>
+	<protNFe versao="4.00">
+		<infProt Id="Id135190781634349">
+			<tpAmb>1</tpAmb>
+			<verAplic>SP_NFE_PL009_V4</verAplic>
+			<chNFe>35191059105833000160550010000794021543839509</chNFe>
+			<dhRecbto>2019-10-22T09:00:07-03:00</dhRecbto>
+			<nProt>135190781634349</nProt>
+			<digVal>kwhMjbgSnXI6S/3kh/7BTIhKjKE=</digVal>
+			<cStat>100</cStat>
+			<xMotivo>Autorizado o uso da NF-e</xMotivo>
+		</infProt>
+	</protNFe>
+</nfeProc>

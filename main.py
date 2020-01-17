@@ -1,221 +1,30 @@
 from nfelib.v4_00 import leiauteNFe_sub as parser
+from nfelib.v4_00 import leiauteNFe as leiauteNFe4
 import pdfkit
 import sys
+import code128
+import barcode
+import base64
+import xmltodict
 
-arquivo_xml = """
-<NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+arquivo = "teste.xml"
 
-    <infNFe Id="NFe35080599999090910270550010000000015180051273" versao="1.10">
-        <ide>
-            <cUF>35</cUF>
-            <cNF>518005127</cNF>
-            <natOp>Venda a vista</natOp>
-            <indPag>0</indPag>
-            <mod>55</mod>
-            <serie>1</serie>
-            <nNF>1</nNF>
-            <dEmi>2008-05-06</dEmi>
-            <dSaiEnt>2008-05-06</dSaiEnt>
-            <tpNF>0</tpNF>
-            <cMunFG>3550308</cMunFG>
-            <tpImp>1</tpImp>
-            <tpEmis>1</tpEmis>
-            <cDV>3</cDV>
-            <tpAmb>2</tpAmb>
-            <finNFe>1</finNFe>
-            <procEmi>0</procEmi>
-            <verProc>NF-eletronica.com</verProc> </ide>
-        <emit>
-            <CNPJ>99999090910270</CNPJ>
-            <xNome>NF-e Associacao NF-e</xNome>
-            <xFant>NF-e</xFant>
-            <enderEmit>
-                <xLgr>Rua Central</xLgr>
-                <nro>100</nro>
-                <xCpl>Fundos</xCpl>
-                <xBairro>Distrito Industrial</xBairro>
-                <cMun>3502200</cMun>
-                <xMun>Angatuba</xMun>
-                <UF>SP</UF>
-                <CEP>17100171</CEP>
-                <cPais>1058</cPais>
-                <xPais>Brasil</xPais>
-                <fone>1733021717</fone> </enderEmit>
-            <IE>123456789012</IE> </emit>
-        <dest>
-            <CNPJ>00000000000191</CNPJ>
-            <xNome>DISTRIBUIDORA DE AGUAS MINERAIS</xNome>
-            <enderDest>
-                <xLgr>AV DAS FONTES</xLgr>
-                <nro>1777</nro>
-                <xCpl>10 ANDAR</xCpl>
-                <xBairro>PARQUE FONTES</xBairro>
-                <cMun>5030801</cMun>
-                <xMun>Sao Paulo</xMun>
-                <UF>SP</UF>
-                <CEP>13950000</CEP>
-                <cPais>1058</cPais>
-                <xPais>BRASIL</xPais>
-                <fone>1932011234</fone> </enderDest>
-            <IE> </IE> </dest>
-        <retirada>
-            <CNPJ>99171171000194</CNPJ>
-            <xLgr>AV PAULISTA</xLgr>
-            <nro>12345</nro>
-            <xCpl>TERREO</xCpl>
-            <xBairro>CERQUEIRA CESAR</xBairro>
-            <cMun>3550308</cMun>
-            <xMun>SAO PAULO</xMun>
-            <UF>SP</UF> </retirada>
-        <entrega>
-            <CNPJ>99299299000194</CNPJ>
-            <xLgr>AV FARIA LIMA</xLgr>
-            <nro>1500</nro>
-            <xCpl>15 ANDAR</xCpl>
-            <xBairro>PINHEIROS</xBairro>
-            <cMun>3550308</cMun>
-            <xMun>SAO PAULO</xMun>
-            <UF>SP</UF> </entrega>
-        <det nItem="1">
-            <prod>
-                <cProd>00001</cProd>
-                <cEAN></cEAN>
-                <xProd>Agua Mineral</xProd>
-                <CFOP>5101</CFOP>
-                <uCom>dz</uCom>
-                <qCom>1000000.0000</qCom>
-                <vUnCom>1</vUnCom>
-                <vProd>10000000.00</vProd>
-                <cEANTrib></cEANTrib>
-                <uTrib>und</uTrib>
-                <qTrib>12000000.0000</qTrib>
-                <vUnTrib>1</vUnTrib> </prod>
-            <imposto>
-                <ICMS>
-                    <ICMS00>
-                        <orig>0</orig>
-                        <CST>00</CST>
-                        <modBC>0</modBC>
-                        <vBC>10000000.00</vBC>
-                        <pICMS>18.00</pICMS>
-                        <vICMS>1800000.00</vICMS> </ICMS00> </ICMS>
-                <PIS>
-                    <PISAliq>
-                        <CST>01</CST>
-                        <vBC>10000000.00</vBC>
-                        <pPIS>0.65</pPIS>
-                        <vPIS>65000</vPIS> </PISAliq> </PIS>
-                <COFINS>
-                    <COFINSAliq>
-                        <CST>01</CST>
-                        <vBC>10000000.00</vBC>
-                        <pCOFINS>2.00</pCOFINS>
-                        <vCOFINS>200000.00</vCOFINS> </COFINSAliq> </COFINS> </imposto> </det>
-        <det nItem="2">
-            <prod>
-                <cProd>00002</cProd>
-                <cEAN></cEAN>
-                <xProd>Agua Mineral</xProd>
-                <CFOP>5101</CFOP>
-                <uCom>pack</uCom>
-                <qCom>5000000.0000</qCom>
-                <vUnCom>2</vUnCom>
-                <vProd>10000000.00</vProd>
-                <cEANTrib></cEANTrib>
-                <uTrib>und</uTrib>
-                <qTrib>3000000.0000</qTrib>
-                <vUnTrib>0.3333</vUnTrib> </prod>
-            <imposto>
-                <ICMS>
-                    <ICMS00>
-                        <orig>0</orig>
-                        <CST>00</CST>
-                        <modBC>0</modBC>
-                        <vBC>10000000.00</vBC>
-                        <pICMS>18.00</pICMS>
-                        <vICMS>1800000.00</vICMS> </ICMS00> </ICMS>
-                <PIS>
-                    <PISAliq>
-                        <CST>01</CST>
-                        <vBC>10000000.00</vBC>
-                        <pPIS>0.65</pPIS>
-                        <vPIS>65000</vPIS> </PISAliq> </PIS>
-                <COFINS>
-                    <COFINSAliq>
-                        <CST>01</CST>
-                        <vBC>10000000.00</vBC>
-                        <pCOFINS>2.00</pCOFINS>
-                        <vCOFINS>200000.00</vCOFINS> </COFINSAliq> </COFINS> </imposto> </det>
-        <total>
-            <ICMSTot>
-                <vBC>20000000.00</vBC>
-                <vICMS>18.00</vICMS>
-                <vBCST>0</vBCST>
-                <vST>0</vST>
-                <vProd>20000000.00</vProd>
-                <vFrete>0</vFrete>
-                <vSeg>0</vSeg>
-                <vDesc>0</vDesc>
-                <vII>0</vII>
-                <vIPI>0</vIPI>
-                <vPIS>130000.00</vPIS>
-                <vCOFINS>400000.00</vCOFINS>
-                <vOutro>0</vOutro>
-                <vNF>20000000.00</vNF> </ICMSTot> </total>
-        <transp>
-            <modFrete>0</modFrete>
-            <transporta>
-                <CNPJ>99171171000191</CNPJ>
-                <xNome>Distribuidora de Bebidas Fazenda de SP Ltda.</xNome>
-                <IE>171999999119</IE>
-                <xEnder>Rua Central 100 - Fundos - Distrito Industrial</xEnder>
-                <xMun>SAO PAULO</xMun>
-                <UF>SP</UF> </transporta>
-            <veicTransp>
-                <placa>BXI1717</placa>
-                <UF>SP</UF>
-                <RNTC>123456789</RNTC> </veicTransp>
-            <reboque>
-                <placa>BXI1818</placa>
-                <UF>SP</UF>
-                <RNTC>123456789</RNTC> </reboque>
-            <vol>
-                <qVol>10000</qVol>
-                <esp>CAIXA</esp>
-                <marca>LINDOYA</marca>
-                <nVol>500</nVol>
-                <pesoL>1000000000.000</pesoL>
-                <pesoB>1200000000.000</pesoB>
-                <lacres>
-                    <nLacre>XYZ10231486</nLacre> </lacres> </vol> </transp>
-        <infAdic>
-            <infAdFisco>Nota Fiscal de exemplo NF-eletronica.com</infAdFisco> </infAdic> </infNFe>
-
-    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
-        <SignedInfo>
-            <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></CanonicalizationMethod>
-            <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></SignatureMethod>
-            <Reference URI="#NFe35080599999090910270550010000000015180051273">
-                <Transforms>
-                    <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></Transform>
-                    <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></Transform> </Transforms>
-                <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></DigestMethod>
-                <DigestValue>xhTSDMH61e9uqe04lnoHT4ZzLSY=</DigestValue> </Reference> </SignedInfo>
-        <SignatureValue>Iz5Z3PLQbzZt9jnBtr6xsmHZMOu/3plXG9xxfFjRCQYGnD1rjlhzBGrqt026Ca2VHHM/bHNepi6FuFkAi595GScKVuHREUotzifE2OIjgavvTOrMwbXG7+0LYgkwPFiPCao2S33UpZe7MneaxcmKQGKQZw1fP8fsWmaQ4cczZT8=</SignatureValue>
-        <KeyInfo>
-            <X509Data>
-                <X509Certificate>MIIEuzCCA6OgAwIBAgIDMTMxMA0GCSqGSIb3DQEBBQUAMIGSMQswCQYDVQQGEwJCUjELMAkGA1UECBMCUlMxFTATBgNVBAcTDFBvcnRvIEFsZWdyZTEdMBsGA1UEChMUVGVzdGUgUHJvamV0byBORmUgUlMxHTAbBgNVBAsTFFRlc3RlIFByb2pldG8gTkZlIFJTMSEwHwYDVQQDExhORmUgLSBBQyBJbnRlcm1lZGlhcmlhIDEwHhcNMDgwNDI4MDkwMTAyWhcNMDkwNDMwMjM1OTU5WjCBnjELMAkGA1UECBMCUlMxHTAbBgNVBAsTFFRlc3RlIFByb2pldG8gTkZlIFJTMR0wGwYDVQQKExRUZXN0ZSBQcm9qZXRvIE5GZSBSUzEVMBMGA1UEBxMMUE9SVE8gQUxFR1JFMQswCQYDVQQGEwJCUjEtMCsGA1UEAxMkTkZlIC0gQXNzb2NpYWNhbyBORi1lOjk5OTk5MDkwOTEwMjcwMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDh6RRv0bj4RYX+tDQrZRb5opa77LBVVs+6LphIfSF3TSWPfnKh0+xLlBFdmnB5YGgbbW9Uon6pZQTfaC8jZhRhI5eFRRofY/Ugoeo0NGt6PcIQNZQd6lLQ/ASd1qWwjqJoEa7udriKjy3h351Mf1bng1VxS1urqC3Dn39ZWIEwQIDAQABo4IBjjCCAYowIgYDVR0jAQEABBgwFoAUPT5TqhNWAm+ZpcVsvB7malDBjEQwDwYDVR0TAQH/BAUwAwEBADAPBgNVHQ8BAf8EBQMDAOAAMAwGA1UdIAEBAAQCMAAwgbwGA1UdEQEBAASBsTCBrqA4BgVgTAEDBKAvBC0wNzA4MTk1MTE1MTk0NTMxMDg3MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDCgHQYFYEwBAwKgFAQSRmVybmFuZG8gQ2FudG8gQWx0oBkGBWBMAQMDoBAEDjk5OTk5MDkwOTEwMjcwoBcGBWBMAQMHoA4EDDAwMDAwMDAwMDAwMIEfZmVybmFuZG8tYWx0QHByb2NlcmdzLnJzLmdvdi5icjAgBgNVHSUBAf8EFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwUwYDVR0fAQEABEkwRzBFoEOgQYY/aHR0cDovL25mZWNlcnRpZmljYWRvLnNlZmF6LnJzLmdvdi5ici9MQ1IvQUNJbnRlcm1lZGlhcmlhMzguY3JsMA0GCSqGSIb3DQEBBQUAA4IBAQCNPpaZ3Byu3/70nObXE8NiM53j1ddIFXsb+v2ghCVd4ffExv3hYc+/a3lfgV8H/WfQsdSCTzS2cHrd4Aasr/eXfclVDmf2hcWz+R7iysOHuT6B6r+DvV3JcMdJJCDdynR5REa+zViMnVZo1G3KuceQ7/y5X3WFNVq4kwHvonJ9oExsWyw8rTwUK5bsjz0A2yEwXkmkJIngnF41sP31+9jCImiqkXcmsesFhxzX7iurAQAQCZOm7iwMWxQKcAjXCZrgSZWRQy6mU224sX3HTArHahmLJ9Iw+WYAua5qBJsiN6PC7v5tfhrEQFpcG39yMnOecxvkkPolDUyBa7d7xwgm</X509Certificate> </X509Data> </KeyInfo> </Signature>
-
-</NFe> 
-"""
-
-arquivo = "danfe.xml"
-
-nota = parser.parse(arquivo)
+nota = leiauteNFe4.parse(arquivo)
 #print(nota.infNFe.ide.cNF)
 
 x = nota.infNFe
+# print(nota.infNFe.transp.vol.Vol)
 
+codAcesso = x.attrib["Id"].replace("NFe","")
+
+EAN = barcode.get_barcode_class('code128')
+ean = EAN(codAcesso)
+fullname = ean.save(codAcesso)
+
+with open(fullname, "rb") as image_file:
+    encoded_string = base64.b64encode(image_file.read())
+    
+encoded_string=encoded_string.decode('utf-8')
 
 input_string_css = """
  <style type="text/css">
@@ -589,7 +398,7 @@ input_string_html=F"""
             <tbody>
                 <tr>
                     <td rowspan="3" style="width: 30mm">
-                        <img class="client_logo" src="[url_logo]" alt=""
+                        <img class="client_logo" src="" alt=""
                             onerror=" javascript:this.src='data:image/png;base64," />
                     </td>
                     <td rowspan="3" style="width: 46mm; font-size: 7pt;" class="txt-center">
@@ -633,7 +442,7 @@ input_string_html=F"""
                     </td>
                     <td class="txt-upper" style="width: 85mm;">
                         <span class="nf-label">Controle do Fisco</span>
-                        <span class="codigo">[BarCode]</span>
+                        <img alt="" src="data:image/svg+xml;base64,{encoded_string}"/>
                     </td>
                 </tr>
                 <tr>
@@ -656,7 +465,7 @@ input_string_html=F"""
                 <tr>
                     <td>
                         <span class="nf-label">NATUREZA DA OPERAÇÃO</span>
-                        <span class="info">[_ds_transaction_nature]</span>
+                        <span class="info">{x.ide.natOp}</span>
                     </td>
                     <td style="width: 84.7mm;">
                         <span class="nf-label">[protocol_label]</span>
@@ -709,7 +518,7 @@ input_string_html=F"""
                     </td>
                     <td style="width: 22mm">
                         <span class="nf-label">DATA DE EMISSÃO</span>
-                        <span class="info">[dt_invoice_issue]</span>
+                        <span class="info">{x.ide.dhEmi}</span>
                     </td>
                 </tr>
                 <tr>
@@ -735,7 +544,7 @@ input_string_html=F"""
                     </td>
                     <td>
                         <span class="nf-label">DATA DE ENTR./SAÍDA</span>
-                        <span class="info">[dt_input_output]</span>
+                        <span class="info">{x.ide.dhSaiEnt}</span>
                     </td>
                 </tr>
                 <tr>
@@ -765,7 +574,7 @@ input_string_html=F"""
                     </td>
                     <td>
                         <span class="nf-label">HORA ENTR./SAÍDA</span>
-                        <span id="info">[hr_input_output]</span>
+                        <span id="info">{x.ide.dhSaiEnt}</span>
                     </td>
                 </tr>
             </tbody>
@@ -802,7 +611,7 @@ input_string_html=F"""
                         </td>
                         <td>
                             <span class="nf-label">VALOR DO FCP</span>
-                            <span class="info">[tot_icms_fcp]</span>
+                            <span class="info">{x.total.ICMSTot.vFCP}</span>
                         </td>
                         <td>
                             <span class="nf-label">VALOR DO PIS</span>
@@ -873,15 +682,15 @@ input_string_html=F"""
                     </td>
                     <td style="width: 17.3mm">
                         <span class="nf-label">CÓDIGO ANTT</span>
-                        <span class="info">{x.transp.veicTransp.RNTC}</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 24.5mm">
                         <span class="nf-label">PLACA</span>
-                        <span class="info">{x.transp.veicTransp.placa}</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 11.3mm">
                         <span class="nf-label">UF</span>
-                        <span class="info">{x.transp.veicTransp.UF}</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 29.5mm">
                         <span class="nf-label">CNPJ/CPF</span>
@@ -899,7 +708,7 @@ input_string_html=F"""
                         <span class="content-spacer info">{x.transp.transporta.xNome}</span>
                     </td>
                     <td style="width: 32mm">
-                        <span class="nf-label">MUNIC�PIO</span>
+                        <span class="nf-label">MUNICÍPIO</span>
                         <span class="info">{x.transp.transporta.xMun}</span>
                     </td>
                     <td style="width: 31mm">
@@ -918,7 +727,7 @@ input_string_html=F"""
                 <tr>
                     <td class="field quantidade">
                         <span class="nf-label">QUANTIDADE</span>
-                        <span class="content-spacer info">[nu_transport_amount_transported_volumes]</span>
+                        <span class="content-spacer info"></span>
                     </td>
                     <td style="width: 31.4mm">
                         <span class="nf-label">ESPÉCIE</span>
@@ -926,7 +735,7 @@ input_string_html=F"""
                     </td>
                     <td style="width: 31mm">
                         <span class="nf-label">MARCA</span>
-                        <span class="info">[x.transp.vol.marca]</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 31.5mm">
                         <span class="nf-label">NUMERAÇÃO</span>
@@ -934,11 +743,11 @@ input_string_html=F"""
                     </td>
                     <td style="width: 31.5mm">
                         <span class="nf-label">PESO BRUTO</span>
-                        <span class="info">x.transp.vol.pesoB</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 32.5mm">
                         <span class="nf-label">PESO LÍQUIDO</span>
-                        <span class="info">x.transp.vol.pesoL</span>
+                        <span class="info"></span>
                     </td>
                 </tr>
             </tbody>
@@ -973,31 +782,6 @@ input_string_html=F"""
             </table>
         </div>
 
-        <!-- Calculo de ISSQN -->
-        <p class="area-name">Calculo do issqn</p>
-        <table cellpadding="0" cellspacing="0" border="1" class="boxIssqn">
-            <tbody>
-                <tr>
-                    <td class="field inscrMunicipal">
-                        <span class="nf-label">INSCRIÇÃO MUNICIPAL</span>
-                        <span class="info txt-center">[ds_company_im]</span>
-                    </td>
-                    <td class="field valorTotal">
-                        <span class="nf-label">VALOR TOTAL DOS SERVIÇOS</span>
-                        <span class="info txt-right">[vl_total_serv]</span>
-                    </td>
-                    <td class="field baseCalculo">
-                        <span class="nf-label">BASE DE CÁLCULO DO ISSQN</span>
-                        <span class="info txt-right">[tot_bc_issqn]</span>
-                    </td>
-                    <td class="field valorIssqn">
-                        <span class="nf-label">VALOR DO ISSQN</span>
-                        <span class="info txt-right">[tot_issqn]</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
         <!-- Dados adicionais -->
         <p class="area-name">Dados adicionais</p>
         <table cellpadding="0" cellspacing="0" border="1" class="boxDadosAdicionais">
@@ -1005,7 +789,7 @@ input_string_html=F"""
                 <tr>
                     <td class="field infoComplementar">
                         <span class="nf-label">INFORMAÇÕES COMPLEMENTARES</span>
-                        <span>{x.infAdic.infAdFisco}</span>
+                        <span>{x.infAdic.infCpl}</span>
                     </td>
                     <td class="field reservaFisco" style="width: 85mm; height: 24mm">
                         <span class="nf-label">RESERVA AO FISCO</span>
@@ -1016,18 +800,16 @@ input_string_html=F"""
         </table>
     </div>
 </div>
-<body>
-    <script src="/index.js" type="text/javascript"></script>
-</body>
+
 """
-tamanho= len(x.det)
 
 str_pronta = input_string_css + input_string_html
-# print(str_pronta)
+#print(str_pronta)
 
 options = {
     'quiet': ''
-    }
+}
+
 id = x.Id.replace("NFe","")
-config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files (x86)\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
 pdfkit.from_string(str_pronta,F"{id}.pdf",configuration=config,options=options)
