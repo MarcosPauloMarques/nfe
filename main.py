@@ -5,22 +5,23 @@ import sys
 import code128
 import barcode
 import base64
-import xmltodict
+import os
 
-arquivo = "teste.xml"
+arquivo = "35191059105833000160550010000794031558766976.xml"
 
 nota = parser.parse(arquivo)
-#print(nota.infNFe.ide.cNF)
+# print(nota.infNFe.ide.cNF)
 
 x = nota.infNFe
 # print(nota.infNFe.transp.vol.Vol)
 
-codAcesso = x.Id.replace("NFe","")
+codAcesso = x.Id.replace("NFe", "")
 
-listProduto =[]
+listProduto = []
+
 class Produto:
     cPro = 0
-    xProd =''
+    xProd = ''
     NCM = 0
     CEST = 0
     CFOP = 0
@@ -30,6 +31,7 @@ class Produto:
     vProd = 0
 
 for item in iter(x.det):
+    #listProduto.clear()
     p = Produto()
     p.cPro = item.prod.cProd
     p.xProd = item.prod.xProd
@@ -40,21 +42,24 @@ for item in iter(x.det):
     p.qCom = item.prod.qCom
     p.vUnCom = item.prod.vUnCom
     p.vProd = item.prod.vProd
-
     listProduto.append(p)
 
+texto = ""
+texto2 =""
 
+for item in listProduto:
+    if(item.CEST == None):
+        item.CEST = 0
+    texto += str("<tr>" + "<td>" + str(item.cPro) + "</td>" + "<td>" + str(item.xProd) + "</td>" + "<td>" + str(item.NCM) + "</td>" + "<td>" + str(item.CEST) + "</td>" + "<td>" + str(item.CFOP) + "</td>" + "<td>" + str(item.uCom) + "</td>" + "<td>" + str(item.qCom) + "</td>" + "<td>" + str(item.vUnCom) + "</td>" + "<td>" + str(item.vProd) + "</td>" + "</tr>")
 
 EAN = barcode.get_barcode_class('code128')
 ean = EAN(codAcesso)
-fullname = ean.save(codAcesso)
+fullname = ean.save(codAcesso,text='')
 
 with open(fullname, "rb") as image_file:
     encoded_string = base64.b64encode(image_file.read())
-    
-encoded_string=encoded_string.decode('utf-8')
 
-
+encoded_string = encoded_string.decode('utf-8')
 
 input_string_css = """
  <style type="text/css">
@@ -277,12 +282,12 @@ input_string_css = """
     .nfeArea .wrapper-border {
         border: 1px solid #000;
         border-width: 0 1px 1px;
-        height: 75.7mm;
+        height: auto;
     }
 
     .nfeArea .wrapper-border table {
         margin: 0 -1px;
-        width: 100.4%;
+        width: auto;
     }
 
     .nfeArea .content-spacer {
@@ -395,7 +400,7 @@ input_string_css = """
 </style>
 """
 
-input_string_html=F"""
+input_string_html = F"""
 <!DOCTYPE html>
 <meta charset="utf-8"/>
 <div class="page nfeArea">
@@ -470,9 +475,9 @@ input_string_html=F"""
                             </span>
                         </p>
                     </td>
-                    <td class="txt-upper" style="width: 85mm;">
+                    <td class="txt-upper" style="width: 80mm;">
                         <span class="nf-label">Controle do Fisco</span>
-                        <img alt="" src="data:image/svg+xml;base64,{encoded_string}"/>
+                        <img alt="" style=" font-size= 200%;width: 70mm;" src="data:image/svg+xml;base64, {encoded_string}"/>
                     </td>
                 </tr>
                 <tr>
@@ -498,8 +503,8 @@ input_string_html=F"""
                         <span class="info">{x.ide.natOp}</span>
                     </td>
                     <td style="width: 84.7mm;">
-                        <span class="nf-label">[protocol_label]</span>
-                        <span class="info">[ds_protocol]</span>
+                        <span class="nf-label">PROTOCOLO</span>
+                        <span class="info"></span>
                     </td>
                 </tr>
             </tbody>
@@ -679,7 +684,7 @@ input_string_html=F"""
                         </td>
                         <td>
                             <span class="nf-label label-small">V. APROX. DO TRIBUTO</span>
-                            <span class="info">[ApproximateTax]</span>
+                            <span class="info"></span>
                         </td>
                         <td>
                             <span class="nf-label label-small">VALOR DA CONFINS</span>
@@ -700,7 +705,7 @@ input_string_html=F"""
                 <tr>
                     <td>
                         <span class="nf-label">RAZÃO SOCIAL</span>
-                        <span class="info">{x.transp.transporta.xNome}</span>
+                        <span class="info"></span>
                     </td>
                     <td class="freteConta" style="width: 32mm">
                         <span class="nf-label">FRETE POR CONTA</span>
@@ -724,7 +729,7 @@ input_string_html=F"""
                     </td>
                     <td style="width: 29.5mm">
                         <span class="nf-label">CNPJ/CPF</span>
-                        <span class="info">{x.transp.transporta.CNPJ}</span>
+                        <span class="info"></span>
                     </td>
                 </tr>
             </tbody>
@@ -735,19 +740,19 @@ input_string_html=F"""
                 <tr>
                     <td class="field endereco">
                         <span class="nf-label">ENDEREÇO</span>
-                        <span class="content-spacer info">{x.transp.transporta.xNome}</span>
+                        <span class="content-spacer info"></span>
                     </td>
                     <td style="width: 32mm">
                         <span class="nf-label">MUNICÍPIO</span>
-                        <span class="info">{x.transp.transporta.xMun}</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 31mm">
                         <span class="nf-label">UF</span>
-                        <span class="info">{x.transp.transporta.UF}</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 51.4mm">
                         <span class="nf-label">INSC. ESTADUAL</span>
-                        <span class="info">{x.transp.transporta.IE}</span>
+                        <span class="info"></span>
                     </td>
                 </tr>
             </tbody>
@@ -785,7 +790,7 @@ input_string_html=F"""
         <!-- Dados do produto/servi�o -->
         <p class="area-name">Dados do produto/serviço</p>
         <div class="wrapper-border">
-            <table cellpadding="0" cellspacing="0" border="1" class="boxProdutoServico" id="grid" onbeforeprint="CarregarLista({x.det})">
+            <table cellpadding="0" cellspacing="0" border="1" class="boxProdutoServico" id="grid">
                 <thead class="listProdutoServico" id="table">
                     <tr class="titles">
                         <th class="cod" style="width: 15.5mm">CÓDIGO</th>
@@ -805,10 +810,7 @@ input_string_html=F"""
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td colspan="6"></td>
-                    </tr>
-                </tbody>
+                    {texto}
             </table>
         </div>
 
@@ -830,16 +832,22 @@ input_string_html=F"""
         </table>
     </div>
 </div>
-
 """
 
 str_pronta = input_string_css + input_string_html
-#print(str_pronta)
+# print(str_pronta)
 
 options = {
     'quiet': ''
 }
 
-id = x.Id.replace("NFe","")
-config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files (x86)\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
-pdfkit.from_string(str_pronta,F"{id}.pdf",configuration=config,options=options)
+id = x.Id.replace("NFe", "")
+config = pdfkit.configuration(
+    wkhtmltopdf="C:\\Program Files (x86)\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+pdfkit.from_string(str_pronta, F"{id}.pdf",
+                   configuration=config, options=options)
+
+image_file.close()
+
+file2 = id + ".svg"
+os.remove(file2)
