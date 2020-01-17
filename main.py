@@ -9,13 +9,41 @@ import xmltodict
 
 arquivo = "teste.xml"
 
-nota = leiauteNFe4.parse(arquivo)
+nota = parser.parse(arquivo)
 #print(nota.infNFe.ide.cNF)
 
 x = nota.infNFe
 # print(nota.infNFe.transp.vol.Vol)
 
-codAcesso = x.attrib["Id"].replace("NFe","")
+codAcesso = x.Id.replace("NFe","")
+
+listProduto =[]
+class Produto:
+    cPro = 0
+    xProd =''
+    NCM = 0
+    CEST = 0
+    CFOP = 0
+    uCom = ''
+    qCom = 0
+    vUnCom = 0
+    vProd = 0
+
+for item in iter(x.det):
+    p = Produto()
+    p.cPro = item.prod.cProd
+    p.xProd = item.prod.xProd
+    p.NCM = item.prod.NCM
+    p.CEST = item.prod.CEST
+    p.CFOP = item.prod.CFOP
+    p.uCom = item.prod.uCom
+    p.qCom = item.prod.qCom
+    p.vUnCom = item.prod.vUnCom
+    p.vProd = item.prod.vProd
+
+    listProduto.append(p)
+
+
 
 EAN = barcode.get_barcode_class('code128')
 ean = EAN(codAcesso)
@@ -25,6 +53,8 @@ with open(fullname, "rb") as image_file:
     encoded_string = base64.b64encode(image_file.read())
     
 encoded_string=encoded_string.decode('utf-8')
+
+
 
 input_string_css = """
  <style type="text/css">
