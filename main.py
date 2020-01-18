@@ -6,6 +6,10 @@ import code128
 import barcode
 import base64
 import os
+import glob
+
+for file in glob.glob('*.xml',recursive=True):
+    print(file)
 
 arquivo = "35191059105833000160550010000794031558766976.xml"
 
