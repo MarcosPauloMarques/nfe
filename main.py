@@ -10,42 +10,60 @@ import glob
 from datetime import datetime
 from http.client import HTTPSConnection
 from pysignfe.nf_e import nf_e
+from pynfe.processamento.comunicacao import ComunicacaoSefaz
+import urllib3
+from lxml import etree
+from pynfe.utils.flags import NAMESPACE_NFE
 
-# sys.path.insert(0, os.path.abspath(".."))
+sys.path.insert(0, os.path.abspath(".."))
 
+nova_nfe = nf_e()
 
-# nova_nfe = nf_e()
+caminho_certificado = "15576405_out.pfx"
 
-# caminho_certificado = ""
-# with open(caminho_certificado, 'rb') as f:
-#     arquivo = f.read()
+with open(caminho_certificado, 'rb') as f:
+    arquivo = f.read()
 
-# info_certificado = nova_nfe.extrair_certificado_a1(arquivo,"")
+info_certificado = nova_nfe.extrair_certificado_a1(arquivo,"spxflow")
 
-# cnpj=u''
+cnpj=u'59105833000160'
 
-# chave = '35191159105833000160550010000794041109039253'
-# lista_chaves = [u'35191159105833000160550010000794041109039253']
+chave = u'35191159105833000160550010000794041109039253'
+lista_chaves = [u'35191159105833000160550010000794041109039253']
 
+processo = nova_nfe.download_notas(cnpj=cnpj,lista_chaves=lista_chaves,cert=info_certificado['cert'], key=info_certificado['key'],ambiente_nacional=False,versao=u'3.10', ambiente=1, estado=u'SP', contingencia=False)
 
-# processo = nova_nfe.consultar_servidor(cert=,key=)
+print('Proc XML: ', processo.resposta.original)
+    
+    ##Para cada nota baixada
+for ret in processo.resposta.retNFe:
+    print('Nota chave: ', ret.chNFe.valor)
+    print('\tStatus nota: ', ret.cStat.valor)
+    print('\tMotivo: ', ret.xMotivo.valor)
 
-# https://nfe.fazenda.sp.gov.br/
+# urllib3.disable_warnings()
+# p=ComunicacaoSefaz(uf=u'SP', certificado=caminho_certificado, certificado_senha=u'spxflow', homologacao=True)
+# envio=p.consulta_nota(modelo='nfe',chave=chave)
+# print(envio.content)
 
+# ns = {'ns':NAMESPACE_NFE}
+# prot = etree.fromstring(envio.content) # SEFAZ SP utilizar envio.content
+# status = prot[0][0].xpath('ns:retConsSitNFe/ns:cStat', namespaces=ns)[0].text
+# if status == '100':
+#   prot_nfe = prot[0][0].xpath('ns:retConsSitNFe/ns:protNFe', namespaces=ns)[0]
+#   xml = etree.tostring(prot_nfe, encoding='unicode')
+#   print(xml)
 
-# #http://nfe.fazenda.mg.gov.br/nfe2/services/NFeConsultaProtocolo4     /ws/nfeconsulta2.asmx
-
+# processo = nova_nfe.download_notas(cnpj=cnpj,lista_chaves=lista_chaves,key=info_certificado['key'],cert=info_certificado['cert'], versao=u'3.10', ambiente=2, estado=u'SP', contingencia=False)
+#https://nfe.fazenda.sp.gov.br/
+#http://nfe.fazenda.mg.gov.br/nfe2/services/NFeConsultaProtocolo4     /ws/nfeconsulta2.asmx
 # con = HTTPSConnection(u'http://nfe.fazenda.mg.gov.br/nfe2/services/NFeConsultaProtocolo4', key_file=info_certificado['key'], cert_file=info_certificado['cert'])
-# #con = ConexaoHTTPS(self._servidor, key_file=nome_arq_chave, cert_file=nome_arq_certificado)
 # con.request(u'POST', u'/' + u'/nfe2/services/NFeConsultaProtocolo4', self._soap_envio.xml.encode(u'utf-8'), self._soap_envio.header)
 # resp = con.getresponse()
+# print('Status: ' + processo.resposta.cStat.valor)
+# print('Motivo: ' + processo.resposta.xMotivo.valor)
+# print('Razao: ' + processo.resposta.reason)
 
-# print('Proc XML: ', processo.resposta.original)
-    
-# for ret in processo.resposta.retNFe:
-#     print('Nota chave: ', ret.chNFe.valor)
-#     print('\tStatus nota: ', ret.cStat.valor)
-#     print('\tMotivo: ', ret.xMotivo.valor)
 
 for file in glob.glob('*.xml',recursive=True):
     print(file)
