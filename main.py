@@ -1,45 +1,45 @@
-from nfelib.v4_00 import leiauteNFe_sub as parser
-from nfelib.v4_00 import leiauteNFe as leiauteNFe4
-import pdfkit
-import sys
-import code128
-import barcode
 import base64
-import os
 import glob
+import os
+import sys
 from datetime import datetime
 from http.client import HTTPSConnection
-from pysignfe.nf_e import nf_e
-from pynfe.processamento.comunicacao import ComunicacaoSefaz
+import barcode
+import code128
+import pdfkit
 import urllib3
 from lxml import etree
+from nfelib.v4_00 import leiauteNFe as leiauteNFe4
+from nfelib.v4_00 import leiauteNFe_sub as parser
+from pynfe.processamento.comunicacao import ComunicacaoSefaz
 from pynfe.utils.flags import NAMESPACE_NFE
+from pysignfe.nf_e import nf_e
 
-sys.path.insert(0, os.path.abspath(".."))
+# sys.path.insert(0, os.path.abspath(".."))
 
-nova_nfe = nf_e()
+# nova_nfe = nf_e()
 
-caminho_certificado = "15576405_out.pfx"
+# caminho_certificado = "15576405_out.pfx"
 
-with open(caminho_certificado, 'rb') as f:
-    arquivo = f.read()
+# with open(caminho_certificado, 'rb') as f:
+#     arquivo = f.read()
 
-info_certificado = nova_nfe.extrair_certificado_a1(arquivo,"spxflow")
+# info_certificado = nova_nfe.extrair_certificado_a1(arquivo,"spxflow")
 
-cnpj=u'59105833000160'
+# cnpj=u'59105833000160'
 
-chave = u'35191159105833000160550010000794041109039253'
-lista_chaves = [u'35191159105833000160550010000794041109039253']
+# chave = u'35191159105833000160550010000794041109039253'
+# lista_chaves = [u'35191159105833000160550010000794041109039253']
 
-processo = nova_nfe.download_notas(cnpj=cnpj,lista_chaves=lista_chaves,cert=info_certificado['cert'], key=info_certificado['key'],ambiente_nacional=False,versao=u'3.10', ambiente=1, estado=u'SP', contingencia=False)
+# processo = nova_nfe.download_notas(cnpj=cnpj,lista_chaves=lista_chaves,cert=info_certificado['cert'], key=info_certificado['key'],ambiente_nacional=False,versao=u'3.10', ambiente=1, estado=u'SP', contingencia=False)
 
-print('Proc XML: ', processo.resposta.original)
+# print('Proc XML: ', processo.resposta.original)
     
-    ##Para cada nota baixada
-for ret in processo.resposta.retNFe:
-    print('Nota chave: ', ret.chNFe.valor)
-    print('\tStatus nota: ', ret.cStat.valor)
-    print('\tMotivo: ', ret.xMotivo.valor)
+#     ##Para cada nota baixada
+# for ret in processo.resposta.retNFe:
+#     print('Nota chave: ', ret.chNFe.valor)
+#     print('\tStatus nota: ', ret.cStat.valor)
+#     print('\tMotivo: ', ret.xMotivo.valor)
 
 # urllib3.disable_warnings()
 # p=ComunicacaoSefaz(uf=u'SP', certificado=caminho_certificado, certificado_senha=u'spxflow', homologacao=True)
@@ -53,6 +53,7 @@ for ret in processo.resposta.retNFe:
 #   prot_nfe = prot[0][0].xpath('ns:retConsSitNFe/ns:protNFe', namespaces=ns)[0]
 #   xml = etree.tostring(prot_nfe, encoding='unicode')
 #   print(xml)
+
 
 # processo = nova_nfe.download_notas(cnpj=cnpj,lista_chaves=lista_chaves,key=info_certificado['key'],cert=info_certificado['cert'], versao=u'3.10', ambiente=2, estado=u'SP', contingencia=False)
 #https://nfe.fazenda.sp.gov.br/
@@ -80,15 +81,21 @@ for file in glob.glob('*.xml',recursive=True):
     listProduto = []
 
     class Produto:
-        cPro = 0
+        cPro = 0.0
         xProd = ''
-        NCM = 0
-        CEST = 0
-        CFOP = 0
+        NCM = 0.0
+        CEST = 0.0
+        CFOP = 0.0
         uCom = ''
-        qCom = 0
-        vUnCom = 0
-        vProd = 0
+        qCom = 0.0
+        vUnCom = 0.0
+        vProd = 0.0
+        
+        BcIcms = 0.0
+        VlrIcms = 0.0
+        VlrIpi	= 0.0
+        AliqIcms = 0.0
+        AliqIpi = 0.0
 
     for item in iter(x.det):
         #listProduto.clear()
@@ -102,15 +109,21 @@ for file in glob.glob('*.xml',recursive=True):
         p.qCom = item.prod.qCom
         p.vUnCom = item.prod.vUnCom
         p.vProd = item.prod.vProd
+        
+        p.BcIcms = item.imposto.ICMS.ICMS00.vBC
+        p.VlrIcms = item.imposto.ICMS.ICMS00.vICMS
+        p.VlrIpi = ''
+        p.AliqIcms = ''
+        p.AliqIpi = ''
+
         listProduto.append(p)
 
     texto = ""
-    texto2 =""
 
     for item in listProduto:
         if(item.CEST == None):
             item.CEST = 0
-        texto += str("<tr>" + "<td>" + str(item.cPro) + "</td>" + "<td>" + str(item.xProd) + "</td>" + "<td>" + str(item.NCM) + "</td>" + "<td>" + str(item.CEST) + "</td>" + "<td>" + str(item.CFOP) + "</td>" + "<td>" + str(item.uCom) + "</td>" + "<td>" + str(item.qCom) + "</td>" + "<td>" + str(item.vUnCom) + "</td>" + "<td>" + str(item.vProd) + "</td>" + "</tr>")
+        texto += str("<tr>" + "<td>" + str(item.cPro) + "</td>" + "<td>" + str(item.xProd) + "</td>" + "<td>" + str(item.NCM) + "</td>" + "<td>" + str(item.CEST) + "</td>" + "<td>" + str(item.CFOP) + "</td>" + "<td>" + str(item.uCom) + "</td>" + "<td>" + str(item.qCom) + "</td>" + "<td>" + str(item.vUnCom) + "</td>" + "<td>" + str(item.vProd) + "</td>" + "<td>" + str(item.BcIcms) + "</td>" + "<td>" + str(item.VlrIcms) + "</td>" +"<td>"+ str(item.VlrIpi) + "</td>" + "<td>"+ str(item.AliqIcms) + "</td>" + "<td>"+ str(item.AliqIpi) + "</td>" + "</tr>")
 
     EAN = barcode.get_barcode_class('code128')
     ean = EAN(codAcesso)
@@ -911,4 +924,3 @@ for file in glob.glob('*.xml',recursive=True):
 
     file2 = id + ".svg"
     os.remove(file2)
-
