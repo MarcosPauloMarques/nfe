@@ -342,13 +342,13 @@
             <tbody>
                 <tr>
                     <td colspan="2" class="txt-upper">
-                        Recebemos de [ds_company_issuer_name] os produtos e serviços constantes na nota fiscal indicada
+                        Recebemos de {x.emit.xNome} os produtos e serviços constantes na nota fiscal indicada
                         ao lado
                     </td>
                     <td rowspan="2" class="tserie txt-center">
                         <span class="font-12" style="margin-bottom: 5px;">NF-e</span>
-                        <span>Nº [nl_invoice]</span>
-                        <span>Série [ds_invoice_serie]</span>
+                        <span>N° {x.ide.nNF}</span>
+                        <span>Série {x.ide.serie}</span>
                     </td>
                 </tr>
                 <tr>
@@ -367,16 +367,16 @@
                 <tr>
                     <td rowspan="3" style="width: 30mm">
                         <img class="client_logo" src="" alt=""
-                            onerror=" javascript:this.src='data:image/png;base64," />
+                            onerror=" javascript:this.src='data:image/png;base64'" />
                     </td>
                     <td rowspan="3" style="width: 46mm; font-size: 7pt;" class="txt-center">
-                        <span class="mb2 bold block">[ds_company_issuer_name]</span>
-                        <span class="block">[ds_company_address]</span>
+                        <span class="mb2 bold block">{x.emit.xNome}</span>
+                        <span class="block">{x.emit.enderEmit.xLgr}</span>
                         <span class="block">
-                            [ds_company_neighborhood] - [nu_company_cep]
+                            {x.emit.enderEmit.xBairro} - {x.emit.enderEmit.CEP}
                         </span>
                         <span class="block">
-                            [ds_company_city_name] - [ds_company_uf]- Fone: [nl_company_phone_number]
+                            {x.emit.enderEmit.xMun} - {x.emit.enderEmit.UF} - Fone: {x.emit.enderEmit.fone}
                         </span>
                     </td>
                     <td rowspan="3" class="txtc txt-upper" style="width: 34mm; height: 29.5mm;">
@@ -384,7 +384,7 @@
                         <p class="mb2">Documento auxiliar da Nota Fiscal Eletrônica </p>
                         <p class="entradaSaida mb2">
                             <span class="identificacao">
-                                <span>[ds_code_operation_type]</span>
+                                <span>{x.ide.tpNF}</span>
                             </span>
                             <span class="legenda">
                                 <span>0 - Entrada</span>
@@ -393,12 +393,12 @@
                         </p>
                         <p>
                             <span class="block bold">
-                                <span>Nº</span>
-                                <span>[nl_invoice]</span>
+                                <span>N°</span>
+                                <span>{x.ide.nNF}</span>
                             </span>
                             <span class="block bold">
                                 <span>SÉRIE:</span>
-                                <span>[ds_invoice_serie]</span>final
+                                <span>{x.ide.serie}</span>
                             </span>
                             <span class="block">
                                 <span>Página</span>
@@ -408,15 +408,15 @@
                             </span>
                         </p>
                     </td>
-                    <td class="txt-upper" style="width: 85mm;">
-                        <span class="nf-label">Controle do Fisco</span>
-						<img alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcNCiAgUFVCTElDICctLy9XM0MvL0RURCBTVkcgMS4xLy9FTicNCiAgJ2h0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCc+DQo8c3ZnIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAuMDAwbW0iIGhlaWdodD0iMjMuMDAwbW0iPg0KICAgIDwhLS1BdXRvZ2VuZXJhdGVkIHdpdGggcHl0aG9uLWJhcmNvZGUgMC4xMC4wLS0+DQogICAgPGcgaWQ9ImJhcmNvZGVfZ3JvdXAiPg0KICAgICAgICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBzdHlsZT0iZmlsbDp3aGl0ZSIvPg0KICAgICAgICA8cmVjdCB4PSIyLjU0MG1tIiB5PSIxLjAwMG1tIiB3aWR0aD0iMC40MDBtbSIgaGVpZ2h0PSIxNS4wMDBtbSIgc3R5bGU9ImZpbGw6YmxhY2s7Ii8+DQogICAgICAgIDxyZWN0IHg9IjIuOTQwbW0iIHk9IjEuMDAwbW0iIHdpZHRoPSIwLjIwMG1tIiBoZWlnaHQ9IjE1LjAwMG1tIiBzdHlsZT0iZmlsbDp3aGl0ZTsiLz4NCiAgICAgICAgPHJlY3QgeD0iMy4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzLjM0MG1tIiB5PSIxLjAwMG1tIiB3aWR0aD0iMC40MDBtbSIgaGVpZ2h0PSIxNS4wMDBtbSIgc3R5bGU9ImZpbGw6d2hpdGU7Ii8+DQogICAgICAgIDxyZWN0IHg9IjMuNzQwbW0iIHk9IjEuMDAwbW0iIHdpZHRoPSIwLjYwMG1tIiBoZWlnaHQ9IjE1LjAwMG1tIiBzdHlsZT0iZmlsbDpibGFjazsiLz4NCiAgICAgICAgPHJlY3QgeD0iNC4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0Ljc0MG1tIiB5PSIxLjAwMG1tIiB3aWR0aD0iMC4yMDBtbSIgaGVpZ2h0PSIxNS4wMDBtbSIgc3R5bGU9ImZpbGw6YmxhY2s7Ii8+DQogICAgICAgIDxyZWN0IHg9IjQuOTQwbW0iIHk9IjEuMDAwbW0iIHdpZHRoPSIwLjYwMG1tIiBoZWlnaHQ9IjE1LjAwMG1tIiBzdHlsZT0iZmlsbDp3aGl0ZTsiLz4NCiAgICAgICAgPHJlY3QgeD0iNS41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1Ljc0MG1tIiB5PSIxLjAwMG1tIiB3aWR0aD0iMC42MDBtbSIgaGVpZ2h0PSIxNS4wMDBtbSIgc3R5bGU9ImZpbGw6d2hpdGU7Ii8+DQogICAgICAgIDxyZWN0IHg9IjYuMzQwbW0iIHk9IjEuMDAwbW0iIHdpZHRoPSIwLjQwMG1tIiBoZWlnaHQ9IjE1LjAwMG1tIiBzdHlsZT0iZmlsbDpibGFjazsiLz4NCiAgICAgICAgPHJlY3QgeD0iNi43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI2Ljk0MG1tIiB5PSIxLjAwMG1tIiB3aWR0aD0iMC40MDBtbSIgaGVpZ2h0PSIxNS4wMDBtbSIgc3R5bGU9ImZpbGw6YmxhY2s7Ii8+DQogICAgICAgIDxyZWN0IHg9IjcuMzQwbW0iIHk9IjEuMDAwbW0iIHdpZHRoPSIwLjQwMG1tIiBoZWlnaHQ9IjE1LjAwMG1tIiBzdHlsZT0iZmlsbDp3aGl0ZTsiLz4NCiAgICAgICAgPHJlY3QgeD0iNy43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI4LjM0MG1tIiB5PSIxLjAwMG1tIiB3aWR0aD0iMC40MDBtbSIgaGVpZ2h0PSIxNS4wMDBtbSIgc3R5bGU9ImZpbGw6d2hpdGU7Ii8+DQogICAgICAgIDxyZWN0IHg9IjguNzQwbW0iIHk9IjEuMDAwbW0iIHdpZHRoPSIwLjIwMG1tIiBoZWlnaHQ9IjE1LjAwMG1tIiBzdHlsZT0iZmlsbDpibGFjazsiLz4NCiAgICAgICAgPHJlY3QgeD0iOC45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI5LjE0MG1tIiB5PSIxLjAwMG1tIiB3aWR0aD0iMC4yMDBtbSIgaGVpZ2h0PSIxNS4wMDBtbSIgc3R5bGU9ImZpbGw6YmxhY2s7Ii8+DQogICAgICAgIDxyZWN0IHg9IjkuMzQwbW0iIHk9IjEuMDAwbW0iIHdpZHRoPSIwLjYwMG1tIiBoZWlnaHQ9IjE1LjAwMG1tIiBzdHlsZT0iZmlsbDp3aGl0ZTsiLz4NCiAgICAgICAgPHJlY3QgeD0iOS45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMC4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMC43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMC45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMS4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMS41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMS45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMi4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMi41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMi45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMy41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxMy45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNC4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNC41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNS4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNS4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNS43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNi4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNi41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNi43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNy4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNy41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxNy45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxOC4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxOC41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxOS4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIxOS43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIxOS45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMC4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMC41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMC43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMS4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMS41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMS45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMi4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMi43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMy4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMy41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyMy43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNC4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNC41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNC43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNS4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNS41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuODAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNi4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNi41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNi43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNy4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNy41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyNy43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyOC4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyOC43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyOC45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyOS4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIyOS41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIyOS45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMC4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMC43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMS4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMS41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMS45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMi4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMi43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMi45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMy4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMy43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzMy45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNC4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNC43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNS4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNS41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNS43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNi4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNi4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNi45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNy4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNy43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzNy45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuODAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzOC43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzOS4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzOS41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSIzOS43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSIzOS45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0MC4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0MC41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0MC43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0MS4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0MS45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0Mi4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0Mi4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0Mi43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0My4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0My41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0NC4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0NC4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0NC45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0NS4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0NS4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0NS41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0NS45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0Ni41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0Ni43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0Ny4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0Ny4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0Ny41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0Ny45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuODAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0OC43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0OC45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI0OS4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI0OS43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1MC4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1MC43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1MC45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1MS4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1MS43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1MS45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1Mi4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1Mi45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1My4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1My41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1My45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1NC4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1NC41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1NC45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1NS4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1NS43NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1Ni4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1Ni45NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1Ny4xNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8cmVjdCB4PSI1Ny4zNDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuMjAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOndoaXRlOyIvPg0KICAgICAgICA8cmVjdCB4PSI1Ny41NDBtbSIgeT0iMS4wMDBtbSIgd2lkdGg9IjAuNDAwbW0iIGhlaWdodD0iMTUuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrOyIvPg0KICAgICAgICA8dGV4dCB4PSIzMC4yNDBtbSIgeT0iMjEuMDAwbW0iIHN0eWxlPSJmaWxsOmJsYWNrO2ZvbnQtc2l6ZToxMHB0O3RleHQtYW5jaG9yOm1pZGRsZTsiPjM1MTgwODAzMTAyNDUyMDAwMTcyNTUwMDEwMDAwNDc0NDkxNDU0NjUxNDIwPC90ZXh0Pg0KICAgIDwvZz4NCjwvc3ZnPg0K" />
+                    <td class="txt-upper" style="width: 80mm;">
+                        <span class="nf-label">Controle do Fisco </span>
+                        <img alt="" font-size="200%;width: 80mm;" src="data:image/svg+xml;base64, {encoded_string}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <span class="nf-label">CHAVE DE ACESSO</span>
-                        <span class="bold block txt-center info">[ds_danfe]</span>
+                        <span class="bold block txt-center info">{x.Id.replace("NFe","")}</span>
                     </td>
                 </tr>
                 <tr>
@@ -427,43 +427,43 @@
                 </tr>
             </tbody>
         </table>
-        <!-- Natureza da Operação -->
+        <!-- Natureza da Opera��o -->
         <table cellpadding="0" cellspacing="0" class="boxNaturezaOperacao no-top" border="1">
             <tbody>
                 <tr>
                     <td>
                         <span class="nf-label">NATUREZA DA OPERAÇÃO</span>
-                        <span class="info">[_ds_transaction_nature]</span>
+                        <span class="info">{x.ide.natOp}</span>
                     </td>
                     <td style="width: 84.7mm;">
-                        <span class="nf-label">[protocol_label]</span>
-                        <span class="info">[ds_protocol]</span>
+                        <span class="nf-label">PROTOCOLO</span>
+                        <span class="info"></span>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <!-- Inscrição -->
+        <!-- Inscri��o -->
         <table cellpadding="0" cellspacing="0" class="boxInscricao no-top" border="1">
             <tbody>
                 <tr>
                     <td>
                         <span class="nf-label">INSCRIÇÃO ESTADUAL</span>
-                        <span class="info">[nl_company_ie]</span>
+                        <span class="info">{x.emit.IE}</span>
                     </td>
                     <td style="width: 67.5mm;">
                         <span class="nf-label">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</span>
-                        <span class="info">[nl_company_ie_st]</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 64.3mm">
                         <span class="nf-label">CNPJ</span>
-                        <span class="info">[nl_company_cnpj_cpf]</span>
+                        <span class="info">{x.emit.CNPJ}</span>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <!-- Destinatário/Emitente -->
+        <!-- Destinat�rio/Emitente -->
         <p class="area-name">Destinatário/Emitente</p>
         <table cellpadding="0" cellspacing="0" class="boxDestinatario" border="1">
             <tbody>
@@ -474,11 +474,11 @@
                                 <tr>
                                     <td>
                                         <span class="nf-label">NOME/RAZÃO SOCIAL</span>
-                                        <span class="info">[ds_client_receiver_name]</span>
+                                        <span class="info">{x.dest.xNome}</span>
                                     </td>
                                     <td style="width: 40mm">
                                         <span class="nf-label">CNPJ/CPF</span>
-                                        <span class="info">[nl_client_cnpj_cpf]</span>
+                                        <span class="info">{x.dest.CNPJ}</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -486,7 +486,7 @@
                     </td>
                     <td style="width: 22mm">
                         <span class="nf-label">DATA DE EMISSÃO</span>
-                        <span class="info">[dt_invoice_issue]</span>
+                        <span class="info">{x.ide.dhEmi}</span>
                     </td>
                 </tr>
                 <tr>
@@ -496,15 +496,15 @@
                                 <tr>
                                     <td>
                                         <span class="nf-label">ENDEREÇO</span>
-                                        <span class="info">[ds_client_address]</span>
+                                        <span class="info">{x.dest.enderDest.xLgr}</span>
                                     </td>
                                     <td style="width: 47mm;">
                                         <span class="nf-label">BAIRRO/DISTRITO</span>
-                                        <span class="info">[ds_client_neighborhood]</span>
+                                        <span class="info">{x.dest.enderDest.xBairro}</span>
                                     </td>
                                     <td style="width: 37.2 mm">
                                         <span class="nf-label">CEP</span>
-                                        <span class="info">[nu_client_cep]</span>
+                                        <span class="info">{x.dest.enderDest.CEP}</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -512,7 +512,7 @@
                     </td>
                     <td>
                         <span class="nf-label">DATA DE ENTR./SAÍDA</span>
-                        <span class="info">[dt_input_output]</span>
+                        <span class="info">{x.ide.dhSaiEnt}</span>
                     </td>
                 </tr>
                 <tr>
@@ -522,19 +522,19 @@
                                 <tr>
                                     <td>
                                         <span class="nf-label">MUNICÍPIO</span>
-                                        <span class="info">[ds_client_city_name]</span>
+                                        <span class="info">{x.dest.enderDest.xMun}</span>
                                     </td>
                                     <td style="width: 34mm">
                                         <span class="nf-label">FONE/FAX</span>
-                                        <span class="info">[nl_client_phone_number]</span>
+                                        <span class="info">{x.dest.enderDest.fone}</span>
                                     </td>
                                     <td style="width: 28mm">
                                         <span class="nf-label">UF</span>
-                                        <span class="info">[ds_client_uf]</span>
+                                        <span class="info">{x.dest.enderDest.UF}</span>
                                     </td>
                                     <td style="width: 51mm">
                                         <span class="nf-label">INSCRIÇÃO ESTADUAL</span>
-                                        <span class="info">[ds_client_ie]</span>
+                                        <span class="info">{x.dest.IE}</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -542,17 +542,11 @@
                     </td>
                     <td>
                         <span class="nf-label">HORA ENTR./SAÍDA</span>
-                        <span id="info">[hr_input_output]</span>
+                        <span id="info">{x.ide.dhSaiEnt}</span>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <!-- Fatura -->
-        <div class="boxFatura">
-            <p class="area-name">Fatura</p>
-            [duplicates]
-        </div>
-
         <!-- Calculo do Imposto -->
         <p class="area-name">Calculo do imposto</p>
         <div class="wrapper-table">
@@ -561,77 +555,92 @@
                     <tr>
                         <td>
                             <span class="nf-label label-small">BASE DE CÁLC. DO ICMS</span>
-                            <span class="info">[tot_bc_icms]</span>
+                            <span class="info">{x.total.ICMSTot.vBC}</span>
                         </td>
                         <td>
                             <span class="nf-label">VALOR DO ICMS</span>
-                            <span class="info">[tot_icms]</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vICMS}</span>
                         </td>
                         <td>
                             <span class="nf-label label-small" style="font-size: 4pt;">BASE DE CÁLC. DO ICMS ST</span>
-                            <span class="info">[tot_bc_icms_st]</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vBCST}</span>
                         </td>
                         <td>
                             <span class="nf-label">VALOR DO ICMS ST</span>
-                            <span class="info">[tot_icms_st]</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vST}</span>
                         </td>
                         <td>
                             <span class="nf-label label-small">V. IMP. IMPORTAÇÃO</span>
+                            <br/>
                             <span class="info"></span>
                         </td>
                         <td>
                             <span class="nf-label label-small">V. ICMS UF REMET.</span>
+                            <br/>
                             <span class="info"></span>
                         </td>
                         <td>
                             <span class="nf-label">VALOR DO FCP</span>
-                            <span class="info">[tot_icms_fcp]</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vFCP}</span>
                         </td>
                         <td>
                             <span class="nf-label">VALOR DO PIS</span>
-                            <span class="info"></span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vPIS}</span>
                         </td>
                         <td>
                             <span class="nf-label label-small">V. TOTAL DE PRODUTOS</span>
-                            <span class="info">[vl_total_prod]</span>
+                            <span class="info">{x.total.ICMSTot.vProd}</span>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <span class="nf-label">VALOR DO FRETE</span>
-                            <span class="info">[vl_shipping]</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vFrete}</span>
                         </td>
                         <td>
                             <span class="nf-label">VALOR DO SEGURO</span>
-                            <span class="info">[vl_insurance]</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vSeg}</span>
                         </td>
                         <td>
                             <span class="nf-label">DESCONTO</span>
-                            <span class="info">[vl_discount]</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vDesc}</span>
                         </td>
                         <td>
                             <span class="nf-label">OUTRAS DESP.</span>
-                            <span class="info">[vl_other_expense]</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vOutro}</span>
                         </td>
                         <td>
                             <span class="nf-label">VALOR DO IPI</span>
-                            <span class="info">[tot_total_ipi_tax]</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vIPI}</span>
                         </td>
                         <td>
                             <span class="nf-label">V. ICMS UF DEST.</span>
+                            <br/>
                             <span class="info"></span>
                         </td>
                         <td>
                             <span class="nf-label label-small">V. APROX. DO TRIBUTO</span>
-                            <span class="info">{ApproximateTax}</span>
-                        </td>
-                        <td>
-                            <span class="nf-label label-small">VALOR DA CONFINS</span>
                             <span class="info"></span>
                         </td>
                         <td>
+                            <span class="nf-label label-small">VALOR DA CONFINS</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vCOFINS}</span>
+                        </td>
+                        <td>
                             <span class="nf-label label-small">V. TOTAL DA NOTA</span>
-                            <span class="info">[vl_total]</span>
+                            <br/>
+                            <span class="info">{x.total.ICMSTot.vNF}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -644,31 +653,36 @@
                 <tr>
                     <td>
                         <span class="nf-label">RAZÃO SOCIAL</span>
-                        <span class="info">[ds_transport_carrier_name]</span>
+                        <br/>
+                        <span class="info"></span>
                     </td>
                     <td class="freteConta" style="width: 32mm">
                         <span class="nf-label">FRETE POR CONTA</span>
                         <div class="border">
-                            <span class="info">[ds_transport_code_shipping_type]</span>
+                            <span class="info">{x.transp.modFrete}</span>
                         </div>
                         <p>0 - Emitente</p>
                         <p>1 - Destinatário</p>
                     </td>
                     <td style="width: 17.3mm">
                         <span class="nf-label">CÓDIGO ANTT</span>
-                        <span class="info">[ds_transport_rntc]</span>
+                        <br/>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 24.5mm">
                         <span class="nf-label">PLACA</span>
-                        <span class="info">[ds_transport_vehicle_plate]</span>
+                        <br/>
+                        <span class="info">{x.transp.veicTransp.placa}</span>
                     </td>
                     <td style="width: 11.3mm">
                         <span class="nf-label">UF</span>
-                        <span class="info">[ds_transport_vehicle_uf]</span>
+                        <br/>
+                        <span class="info">{x.transp.transporta.UF}</span>
                     </td>
                     <td style="width: 29.5mm">
                         <span class="nf-label">CNPJ/CPF</span>
-                        <span class="info">[nl_transport_cnpj_cpf]</span>
+                        <br/>
+                        <span class="info">{x.transp.transporta.CNPJ}</span>
                     </td>
                 </tr>
             </tbody>
@@ -679,19 +693,19 @@
                 <tr>
                     <td class="field endereco">
                         <span class="nf-label">ENDEREÇO</span>
-                        <span class="content-spacer info">[ds_transport_address]</span>
+                        <span class="content-spacer info"></span>
                     </td>
                     <td style="width: 32mm">
                         <span class="nf-label">MUNICÍPIO</span>
-                        <span class="info">[ds_transport_city]</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 31mm">
                         <span class="nf-label">UF</span>
-                        <span class="info">[ds_transport_uf]</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 51.4mm">
                         <span class="nf-label">INSC. ESTADUAL</span>
-                        <span class="info">[ds_transport_ie]</span>
+                        <span class="info"></span>
                     </td>
                 </tr>
             </tbody>
@@ -701,7 +715,7 @@
                 <tr>
                     <td class="field quantidade">
                         <span class="nf-label">QUANTIDADE</span>
-                        <span class="content-spacer info">[nu_transport_amount_transported_volumes]</span>
+                        <span class="content-spacer info"></span>
                     </td>
                     <td style="width: 31.4mm">
                         <span class="nf-label">ESPÉCIE</span>
@@ -709,7 +723,7 @@
                     </td>
                     <td style="width: 31mm">
                         <span class="nf-label">MARCA</span>
-                        <span class="info">[ds_transport_mark_volumes_transported]</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 31.5mm">
                         <span class="nf-label">NUMERAÇÃO</span>
@@ -717,19 +731,19 @@
                     </td>
                     <td style="width: 31.5mm">
                         <span class="nf-label">PESO BRUTO</span>
-                        <span class="info">[vl_transport_gross_weight]</span>
+                        <span class="info"></span>
                     </td>
                     <td style="width: 32.5mm">
                         <span class="nf-label">PESO LÍQUIDO</span>
-                        <span class="info">[vl_transport_net_weight]</span>
+                        <span class="info"></span>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <!-- Dados do produto/serviço -->
+        <!-- Dados do produto/servi�o -->
         <p class="area-name">Dados do produto/serviço</p>
         <div class="wrapper-border">
-            <table cellpadding="0" cellspacing="0" border="1" class="boxProdutoServico">
+            <table cellpadding="0" cellspacing="0" border="1" class="boxProdutoServico" id="grid">
                 <thead class="listProdutoServico" id="table">
                     <tr class="titles">
                         <th class="cod" style="width: 15.5mm">CÓDIGO</th>
@@ -749,43 +763,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td>
-                    </tr>
-					<tr>
-                        <td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td>
-                    </tr>
-					<tr>
-                        <td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td><td>text</td>
-                    </tr>
-                </tbody>
+                    {texto}
             </table>
         </div>
-
-        <!-- Calculo de ISSQN -->
-        <p class="area-name">Calculo do issqn</p>
-        <table cellpadding="0" cellspacing="0" border="1" class="boxIssqn">
-            <tbody>
-                <tr>
-                    <td class="field inscrMunicipal">
-                        <span class="nf-label">INSCRIÇÃO MUNICIPAL</span>
-                        <span class="info txt-center">[ds_company_im]</span>
-                    </td>
-                    <td class="field valorTotal">
-                        <span class="nf-label">VALOR TOTAL DOS SERVIÇOS</span>
-                        <span class="info txt-right">[vl_total_serv]</span>
-                    </td>
-                    <td class="field baseCalculo">
-                        <span class="nf-label">BASE DE CÁLCULO DO ISSQN</span>
-                        <span class="info txt-right">[tot_bc_issqn]</span>
-                    </td>
-                    <td class="field valorIssqn">
-                        <span class="nf-label">VALOR DO ISSQN</span>
-                        <span class="info txt-right">[tot_issqn]</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
         <!-- Dados adicionais -->
         <p class="area-name">Dados adicionais</p>
@@ -794,7 +774,7 @@
                 <tr>
                     <td class="field infoComplementar">
                         <span class="nf-label">INFORMAÇÕES COMPLEMENTARES</span>
-                        <span>[ds_additional_information]</span>
+                        <span>{x.infAdic.infCpl}</span>
                     </td>
                     <td class="field reservaFisco" style="width: 85mm; height: 24mm">
                         <span class="nf-label">RESERVA AO FISCO</span>

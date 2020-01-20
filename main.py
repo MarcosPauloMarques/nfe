@@ -9,12 +9,10 @@ import code128
 import pdfkit
 import urllib3
 from lxml import etree
-from nfelib.v4_00 import leiauteNFe as leiauteNFe4
+import nfelib.v4_00
 from nfelib.v4_00 import leiauteNFe_sub as parser
-from pynfe.processamento.comunicacao import ComunicacaoSefaz
-from pynfe.utils.flags import NAMESPACE_NFE
-from pysignfe.nf_e import nf_e
-
+import pynfe
+import pysignfe
 # sys.path.insert(0, os.path.abspath(".."))
 
 # nova_nfe = nf_e()
@@ -106,11 +104,11 @@ for file in glob.glob('*.xml',recursive=True):
         p.CEST = item.prod.CEST
         p.CFOP = item.prod.CFOP
         p.uCom = item.prod.uCom
-        p.qCom = item.prod.qCom
+        p.qCom = (round(float(item.prod.qCom)))
         p.vUnCom = item.prod.vUnCom
-        p.vProd = item.prod.vProd
+        p.vProd = ("%.2f" % float(item.prod.vProd))
         
-        p.BcIcms = item.imposto.ICMS.ICMS00.vBC
+        #p.BcIcms = item.imposto.ICMS.ICMS00.vBC
         p.VlrIcms = item.imposto.ICMS.ICMS00.vICMS
         p.VlrIpi = ''
         p.AliqIcms = ''
@@ -127,7 +125,7 @@ for file in glob.glob('*.xml',recursive=True):
 
     EAN = barcode.get_barcode_class('code128')
     ean = EAN(codAcesso)
-    fullname = ean.save(codAcesso,text='')
+    fullname = ean.save(codAcesso,text='', options={"write_text": False})
 
     with open(fullname, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read())
@@ -548,9 +546,9 @@ for file in glob.glob('*.xml',recursive=True):
                                 </span>
                             </p>
                         </td>
-                        <td class="txt-upper" style="width: 80mm;">
-                            <span class="nf-label">Controle do Fisco</span>
-                            <img alt="" style=" font-size= 200%;width: 70mm;" src="data:image/svg+xml;base64, {encoded_string}"/>
+                        <td class="txt-upper" style="width: 80mm;>
+                            <p><span class="nf-label">Controle do Fisco </span></p>
+                            <img alt="" style=" font-size= 200%;width: 80mm;align: center;" src="data:image/svg+xml;base64, {encoded_string}"/>
                         </td>
                     </tr>
                     <tr>
@@ -699,30 +697,37 @@ for file in glob.glob('*.xml',recursive=True):
                             </td>
                             <td>
                                 <span class="nf-label">VALOR DO ICMS</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vICMS}</span>
                             </td>
                             <td>
                                 <span class="nf-label label-small" style="font-size: 4pt;">BASE DE CÁLC. DO ICMS ST</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vBCST}</span>
                             </td>
                             <td>
                                 <span class="nf-label">VALOR DO ICMS ST</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vST}</span>
                             </td>
                             <td>
                                 <span class="nf-label label-small">V. IMP. IMPORTAÇÃO</span>
+                                <br/>
                                 <span class="info"></span>
                             </td>
                             <td>
                                 <span class="nf-label label-small">V. ICMS UF REMET.</span>
+                                <br/>
                                 <span class="info"></span>
                             </td>
                             <td>
                                 <span class="nf-label">VALOR DO FCP</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vFCP}</span>
                             </td>
                             <td>
                                 <span class="nf-label">VALOR DO PIS</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vPIS}</span>
                             </td>
                             <td>
@@ -733,26 +738,32 @@ for file in glob.glob('*.xml',recursive=True):
                         <tr>
                             <td>
                                 <span class="nf-label">VALOR DO FRETE</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vFrete}</span>
                             </td>
                             <td>
                                 <span class="nf-label">VALOR DO SEGURO</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vSeg}</span>
                             </td>
                             <td>
                                 <span class="nf-label">DESCONTO</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vDesc}</span>
                             </td>
                             <td>
                                 <span class="nf-label">OUTRAS DESP.</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vOutro}</span>
                             </td>
                             <td>
                                 <span class="nf-label">VALOR DO IPI</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vIPI}</span>
                             </td>
                             <td>
                                 <span class="nf-label">V. ICMS UF DEST.</span>
+                                <br/>
                                 <span class="info"></span>
                             </td>
                             <td>
@@ -761,10 +772,12 @@ for file in glob.glob('*.xml',recursive=True):
                             </td>
                             <td>
                                 <span class="nf-label label-small">VALOR DA CONFINS</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vCOFINS}</span>
                             </td>
                             <td>
                                 <span class="nf-label label-small">V. TOTAL DA NOTA</span>
+                                <br/>
                                 <span class="info">{x.total.ICMSTot.vNF}</span>
                             </td>
                         </tr>
@@ -778,6 +791,7 @@ for file in glob.glob('*.xml',recursive=True):
                     <tr>
                         <td>
                             <span class="nf-label">RAZÃO SOCIAL</span>
+                            <br/>
                             <span class="info"></span>
                         </td>
                         <td class="freteConta" style="width: 32mm">
@@ -790,19 +804,23 @@ for file in glob.glob('*.xml',recursive=True):
                         </td>
                         <td style="width: 17.3mm">
                             <span class="nf-label">CÓDIGO ANTT</span>
+                            <br/>
                             <span class="info"></span>
                         </td>
                         <td style="width: 24.5mm">
                             <span class="nf-label">PLACA</span>
-                            <span class="info"></span>
+                            <br/>
+                            <span class="info">{x.transp.veicTransp.placa}</span>
                         </td>
                         <td style="width: 11.3mm">
                             <span class="nf-label">UF</span>
-                            <span class="info"></span>
+                            <br/>
+                            <span class="info">{x.transp.transporta.UF}</span>
                         </td>
                         <td style="width: 29.5mm">
                             <span class="nf-label">CNPJ/CPF</span>
-                            <span class="info"></span>
+                            <br/>
+                            <span class="info">{x.transp.transporta.CNPJ}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -916,7 +934,7 @@ for file in glob.glob('*.xml',recursive=True):
 
     id = x.Id.replace("NFe", "")
     config = pdfkit.configuration(
-        wkhtmltopdf="C:\\Program Files (x86)\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+        wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
     pdfkit.from_string(str_pronta, F"{id}.pdf",
                     configuration=config, options=options)
 

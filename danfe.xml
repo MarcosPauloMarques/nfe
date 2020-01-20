@@ -78,7 +78,7 @@
                 <xProd>Agua Mineral</xProd>
                 <CFOP>5101</CFOP>
                 <uCom>dz</uCom>
-                <qCom>1000000.0000</qCom>
+                <qCom>1000000.9999</qCom>
                 <vUnCom>1</vUnCom>
                 <vProd>10000000.00</vProd>
                 <cEANTrib></cEANTrib>
@@ -153,7 +153,7 @@
                 <vDesc>0</vDesc>
                 <vII>0</vII>
                 <vIPI>0</vIPI>
-                <vPIS>130000.00</vPIS>
+                <vPIS>130000000000000000000000000000000000.00</vPIS>
                 <vCOFINS>400000.00</vCOFINS>
                 <vOutro>0</vOutro>
                 <vNF>20000000.00</vNF> </ICMSTot> </total>
